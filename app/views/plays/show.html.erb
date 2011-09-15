@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Post:</b>
+  <%= @play.post %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @play.ip %>
+</p>
+
+<p>
+  <b>Referrer:</b>
+  <%= @play.referrer %>
+</p>
+
+
+<%= link_to 'Edit', edit_play_path(@play) %> |
+<%= link_to 'Back', plays_path %>

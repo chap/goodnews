@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :account
+  has_many :plays
 
   has_attached_file :file,
   :storage => :s3,

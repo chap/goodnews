@@ -9,6 +9,7 @@
 //<![CDATA[
 
 $(document).ready(function(){
+  PLAYED = false;
 
 	/*
 	 * Instance CirclePlayer inside jQuery doc ready
@@ -29,10 +30,15 @@ $(document).ready(function(){
 	{
 		mp3: '<%= @post.file %>'
 	}, {
+	  play: function() {
+	    if (!PLAYED) {
+	      PLAYED = true;
+	      jQuery.post('<%= post_plays_path(@post, :format => 'json') %>')
+	    }
+	  },
 		cssSelectorAncestor: "#cp_container_1",
 		swfPath: "<%= asset_path 'jplayer/Jplayer.swf' %>",
-		supplied: 'mp3',
-		solution:"flash,html"
+		supplied: 'mp3'
 	});
 
   // $.jPlayer.event.play
@@ -57,6 +63,12 @@ $(document).ready(function(){
 	</ul>
 </div>
 
+<h3><%= pluralize(@post.plays.length, 'play') %></h3>
+<ul id="plays">
+  <% @post.plays.order('created_at desc').each do |play| %>
+    <li><%= time_ago_in_words(play.created_at)%> ago at <%= play.ip %> from <%= play.referrer %></li>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
