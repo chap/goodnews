@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  published_at: 2011-09-15 12:03:05
+  title: MyString
+  account: 
+
+two:
+  published_at: 2011-09-15 12:03:05
+  title: MyString
+  account: 

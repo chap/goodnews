@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @post.title %></h1>
+<p>
+  <%= @post.published_at %>
+</p>
+
+<script type="text/javascript">
+//<![CDATA[
+
+$(document).ready(function(){
+
+	/*
+	 * Instance CirclePlayer inside jQuery doc ready
+	 *
+	 * CirclePlayer(jPlayerSelector, media, options)
+	 *   jPlayerSelector: String - The css selector of the jPlayer div.
+	 *   media: Object - The media object used in jPlayer("setMedia",media).
+	 *   options: Object - The jPlayer options.
+	 *
+	 * Multiple instances must set the cssSelectorAncestor in the jPlayer options. Defaults to "#cp_container_1" in CirclePlayer.
+	 *
+	 * The CirclePlayer uses the default supplied:"m4a, oga" if not given, which is different from the jPlayer default of supplied:"mp3"
+	 * Note that the {wmode:"window"} option is set to ensure playback in Firefox 3.6 with the Flash solution.
+	 * However, the OGA format would be used in this case with the HTML solution.
+	 */
+
+	var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1",
+	{
+		mp3: '<%= @post.file %>'
+	}, {
+		cssSelectorAncestor: "#cp_container_1",
+		swfPath: "jplayer",
+		supplied: 'mp3'
+	});
+});
+//]]>
+</script>
+
+<div id="jquery_jplayer_1" class="cp-jplayer"></div>
+<div id="cp_container_1" class="cp-container">
+	<div class="cp-buffer-holder"> <!-- .cp-gt50 only needed when buffer is > than 50% -->
+		<div class="cp-buffer-1"></div>
+		<div class="cp-buffer-2"></div>
+	</div>
+	<div class="cp-progress-holder"> <!-- .cp-gt50 only needed when progress is > than 50% -->
+		<div class="cp-progress-1"></div>
+		<div class="cp-progress-2"></div>
+	</div>
+	<div class="cp-circle-control"></div>
+	<ul class="cp-controls">
+		<li><a href="#" class="cp-play" tabindex="1">play</a></li>
+		<li><a href="#" class="cp-pause" style="display:none;" tabindex="1">pause</a></li> <!-- Needs the inline style here, or jQuery.show() uses display:inline instead of display:block -->
+	</ul>
+</div>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
