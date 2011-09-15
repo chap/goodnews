@@ -30,9 +30,12 @@ $(document).ready(function(){
 		mp3: '<%= @post.file %>'
 	}, {
 		cssSelectorAncestor: "#cp_container_1",
-		swfPath: "jplayer",
-		supplied: 'mp3'
+		swfPath: "<%= asset_path 'jplayer/Jplayer.swf' %>",
+		supplied: 'mp3',
+		solution:"flash,html"
 	});
+
+  // $.jPlayer.event.play
 });
 //]]>
 </script>
